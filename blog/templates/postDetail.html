@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5 text-center">
+    <h2 class="mb-3">{{ post.title }}</h2>
+    <h3 class="my-2 h5 text-muted">{{ post.date|date:'M d Y'|upper }}</h3>
+    
+    <!-- Imagen de inicio del post -->
+    <img src="{{ post.image.url }}" alt="{{ post.title }}" class="img-fluid rounded" style="max-width: 100%; height: auto; max-height: 400px; object-fit: cover;">
+    
+    <div class="my-4">
+        <p>{{ post.description|safe }}</p>
+    </div>
+</div>
+
+{% endblock %}

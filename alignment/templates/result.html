@@ -1,0 +1,23 @@
+<!-- templates/result.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Resultados del Alineamiento</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Resultados del Alineamiento (Needleman-Wunsch)</h1>
+
+        <h2>Puntaje: {{ score }}</h2>
+
+        <h3>Alineamiento:</h3>
+        <pre>{{ alignment.0 }}</pre> <!-- Primera secuencia alineada -->
+        <pre>{{ alignment.1 }}</pre> <!-- Segunda secuencia alineada -->
+
+        <a href="{% url 'upload_sequence' %}" class="btn btn-secondary mt-3">Volver a Subir Secuencias</a>
+    </div>
+</body>
+</html>

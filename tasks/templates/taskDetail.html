@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<main class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h1 class="text-center mb-4">{{ task.title }}</h1>
+
+            {% if error %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endif %}
+
+            <form method="POST" class="card card-body mb-4">
+                {% csrf_token %}
+                {{ form.as_p }}  <!-- Renderiza el formulario como párrafos -->
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+
+            <form action="{% url 'completeTask' task.id %}" method="POST" class="mb-2">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-success">Complete</button>
+            </form>
+
+            <form action="{% url 'deleteTask' task.id %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

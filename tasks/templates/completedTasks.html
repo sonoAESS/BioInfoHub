@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4 text-center">Tareas Completadas</h1>
+
+    {% if tasks|length > 0 %}
+        <div class="row">
+            {% for task in tasks %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ task.title }}</h5>
+                        <p class="card-text">{{ task.description }}</p>
+                        <p class="text-muted">Completada el: {{ task.datecompleted|date:'M j Y' }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <h3>No hay tareas completadas.</h3>
+    {% endif %}
+
+    <!-- Botón para eliminar todas las tareas completadas -->
+    <form action="{% url 'deleteCompletedTasks' %}" method="POST" class="mt-4">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Eliminar Todas las Tareas Completadas</button>
+    </form>
+</div>
+{% endblock %}

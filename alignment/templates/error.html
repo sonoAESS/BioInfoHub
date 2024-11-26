@@ -1,0 +1,23 @@
+<!-- templates/error.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Error</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Error</h1>
+
+        {% if error %}
+            <div class="alert alert-danger">{{ error }}</div>
+        {% else %}
+            <div class="alert alert-danger">Ha ocurrido un error inesperado.</div>
+        {% endif %}
+
+        <a href="{% url 'upload_sequence' %}" class="btn btn-secondary mt-3">Volver a Intentar</a>
+    </div>
+</body>
+</html>

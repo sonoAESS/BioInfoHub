@@ -1,0 +1,7 @@
+# forms.py
+from django import forms
+
+class SequenceUploadForm(forms.Form):
+    file1 = forms.FileField(label='Secuencia 1')
+    file2 = forms.FileField(label='Secuencia 2')
+    format = forms.ChoiceField(choices=[('fasta', 'FASTA'), ('genbank', 'GenBank')], label='Formato')

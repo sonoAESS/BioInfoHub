@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4 text-center">Tareas Pendientes</h1>
+    <div class="row">
+        {% if tasks|length > 0 %}
+            {% for task in tasks %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="{% url 'taskDetail' task.id %}" class="text-decoration-none text-dark">
+                                {% if task.important %}
+                                    <strong>{{ task.title }} ⭐</strong> 
+                                {% else %}
+                                    {{ task.title }}
+                                {% endif %}
+                            </a>
+                        </h5>
+                        <p class="card-text">{{ task.description }}</p>
+                        <p class="text-muted">{{ task.created|date:'M j Y' }}</p>
+                        <form method="POST" action="{% url 'completeTask' task.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-success">Completar</button>
+                        </form>
+                        <form method="POST" action="{% url 'deleteTask' task.id %}" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <h1>No hay tareas pendientes.</h1>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
